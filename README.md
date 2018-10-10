@@ -19,6 +19,22 @@ $ composer require rickselby/laravel-gate-cache
 
 Laravel will auto-discover the package.
 
+## Use Case
+
+As discussed on [reddit](https://www.reddit.com/r/laravel/comments/9mknx6/) - multiple calls to `Gate` methods result in the underlying code being re-run. Take this pseudo-blade-code, for example:
+
+```
+@foreach($posts as $post)
+    @can('add_posts') BUTTON @endcan
+    @can('edit_posts') BUTTON @endcan
+    @can('delete_posts') BUTTON @endcan
+@endforeach
+```
+
+Normally, each permission check would be called as many times as there are posts. With this package, they will only be called once; their results will be cached for any further calls.
+
+Note that this is per-request only. Each request will test each permission once... but only once.
+
 ## License
 
 Laravel Form Components is licensed under [The MIT License (MIT)](LICENSE).
