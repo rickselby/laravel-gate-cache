@@ -4,10 +4,20 @@ namespace RickSelby\Laravel\GateCache;
 
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
+use Illuminate\Contracts\Container\Container;
 
 class GateCache extends Gate implements GateContract
 {
-    private $rawResults = [];
+    /** @var \Illuminate\Support\Collection */
+    private $rawResults;
+
+    public function __construct(Container $container, callable $userResolver, array $abilities = [], array $policies = [], array $beforeCallbacks = [], array $afterCallbacks = [])
+    {
+        parent::__construct($container, $userResolver, $abilities, $policies, $beforeCallbacks, $afterCallbacks);
+
+        $this->rawResults = collect();
+    }
+
 
     /**
      * Get the cached raw result from the authorization callback.
@@ -20,11 +30,11 @@ class GateCache extends Gate implements GateContract
     {
         $hash = $this->getHash($ability, $arguments);
 
-        if (!isset($this->rawResults[$hash])) {
-            $this->rawResults[$hash] = parent::raw($ability, $arguments);
+        if (!$this->rawResults->has($hash)) {
+            $this->rawResults->put($hash, parent::raw($ability, $arguments));
         }
 
-        return $this->rawResults[$hash];
+        return $this->rawResults->get($hash);
     }
 
     /**
