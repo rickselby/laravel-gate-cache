@@ -5,9 +5,9 @@ Add a per-request caching layer to Laravel's Gate.
 
 ## Compatibility Chart
 
-| Laravel Gate Cache | Laravel | PHP    |
-|--------------------|---------|--------|
-| **dev-master**     | 5.7+    | 7.1.3+ |
+| Laravel Gate Cache | Laravel |
+|--------------------|---------|
+| **dev-master**     | 5.5+    |
 
 ## Installing
 
