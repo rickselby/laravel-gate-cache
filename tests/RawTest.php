@@ -57,8 +57,9 @@ class RawTest extends AbstractPackageTestCase
             ->setMethods(['callAuthCallback'])
             ->setConstructorArgs([
                 $this->app,
+                // User Resolver must return true for 5.6
                 function () {
-                    return call_user_func($this->app['auth']->userResolver());
+                    return true;
                 },
             ])
             ->getMock();
