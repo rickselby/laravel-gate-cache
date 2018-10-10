@@ -1,0 +1,33 @@
+{
+    "name": "rickselby/laravel-gate-cache",
+    "description": "Add a per-request caching layer to Laravel's Gate",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rick Selby",
+            "email": "rick@selby-family.co.uk"
+        }
+    ],
+    "require": {
+        "illuminate/auth": "5.7.*",
+        "illuminate/contracts": "5.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "RickSelby\\Laravel\\GateCache\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RickSelby\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RickSelby\\Laravel\\GateCache\\GateCacheProvider"
+            ]
+        }
+    }
+}
