@@ -1,0 +1,19 @@
+language: php
+
+sudo: false
+
+php:
+  - 7.1
+  - 7.2
+
+env:
+  matrix:
+    - LARAVEL_VERSION=5.7.*
+
+before_install:
+  - composer self-update --stable -n
+  - composer require "laravel/framework:${LARAVEL_VERSION}" --no-update -n
+
+install: travis_retry composer install --no-suggest --prefer-dist -n -o
+
+script: vendor/bin/phpunit

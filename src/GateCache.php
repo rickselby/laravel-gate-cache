@@ -18,7 +18,6 @@ class GateCache extends Gate implements GateContract
         $this->rawResults = collect();
     }
 
-
     /**
      * Get the cached raw result from the authorization callback.
      *
