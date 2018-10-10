@@ -3,8 +3,8 @@
 namespace RickSelby\Laravel\GateCache;
 
 use Illuminate\Auth\Access\Gate;
-use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 
 class GateCache extends Gate implements GateContract
 {
@@ -29,7 +29,7 @@ class GateCache extends Gate implements GateContract
     {
         $hash = $this->getHash($ability, $arguments);
 
-        if (!$this->rawResults->has($hash)) {
+        if (! $this->rawResults->has($hash)) {
             $this->rawResults->put($hash, parent::raw($ability, $arguments));
         }
 
@@ -37,7 +37,7 @@ class GateCache extends Gate implements GateContract
     }
 
     /**
-     * Generate a unique hash for the request
+     * Generate a unique hash for the request.
      *
      * @param $ability
      * @param $arguments

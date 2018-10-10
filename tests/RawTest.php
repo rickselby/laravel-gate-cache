@@ -2,8 +2,8 @@
 
 namespace RickSelby\Tests;
 
-use PHPUnit\Framework\MockObject\MockObject;
 use RickSelby\Laravel\GateCache\GateCache;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class RawTest extends AbstractPackageTestCase
 {
@@ -59,7 +59,7 @@ class RawTest extends AbstractPackageTestCase
                 $this->app,
                 function () {
                     return call_user_func($this->app['auth']->userResolver());
-                }
+                },
             ])
             ->getMock();
     }
