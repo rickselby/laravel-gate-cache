@@ -7,7 +7,7 @@ Add a per-request caching layer to Laravel's Gate.
 
 | Laravel Gate Cache | Laravel |
 |--------------------|---------|
-| **dev-master**     | 5.5+    |
+| **1.x**            | 5.5+    |
 
 ## Installing
 
