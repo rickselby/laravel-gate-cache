@@ -2,9 +2,9 @@
 
 namespace RickSelby\Tests;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use RickSelby\Laravel\GateCache\GateCache;
 use PHPUnit\Framework\MockObject\MockObject;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class ForUserTest extends AbstractPackageTestCase
 {

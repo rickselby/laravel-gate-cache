@@ -48,7 +48,7 @@ class GateCache extends Gate implements GateContract
      */
     public function forUser($user)
     {
-        if (!isset($this->userInstances[$user->getAuthIdentifier()])) {
+        if (! isset($this->userInstances[$user->getAuthIdentifier()])) {
             $this->userInstances[$user->getAuthIdentifier()] = parent::forUser($user);
         }
 
