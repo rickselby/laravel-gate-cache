@@ -11,6 +11,9 @@ class GateCache extends Gate implements GateContract
     /** @var \Illuminate\Support\Collection */
     private $rawResults;
 
+    /** @var array */
+    private $userInstances = [];
+
     public function __construct(Container $container, callable $userResolver, array $abilities = [], array $policies = [], array $beforeCallbacks = [], array $afterCallbacks = [])
     {
         parent::__construct($container, $userResolver, $abilities, $policies, $beforeCallbacks, $afterCallbacks);
@@ -34,6 +37,22 @@ class GateCache extends Gate implements GateContract
         }
 
         return $this->rawResults->get($hash);
+    }
+
+    /**
+     * Cache each instance of Gate per user...
+     *
+     * @param \Illuminate\Contracts\Auth\Authenticatable|mixed $user
+     *
+     * @return Gate|GateContract|mixed
+     */
+    public function forUser($user)
+    {
+        if (!isset($this->userInstances[$user->getAuthIdentifier()])) {
+            $this->userInstances[$user->getAuthIdentifier()] = parent::forUser($user);
+        }
+
+        return $this->userInstances[$user->getAuthIdentifier()];
     }
 
     /**
