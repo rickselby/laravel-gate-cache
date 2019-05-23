@@ -9,6 +9,10 @@ Add a per-request caching layer to Laravel's Gate.
 |--------------------|---------|
 | **1.x**            | 5.5+    |
 
+| Laravel Gate Cache |   PHP   |
+|--------------------|---------|
+| **1.x**            | 7.1+    |
+
 ## Installing
 
 Require the project using [Composer](https://getcomposer.org):
