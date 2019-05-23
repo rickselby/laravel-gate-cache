@@ -38,7 +38,7 @@ class ForUserTest extends AbstractPackageTestCase
         );
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

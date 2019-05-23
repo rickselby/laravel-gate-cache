@@ -49,7 +49,7 @@ class RawTest extends AbstractPackageTestCase
         $this->gateCache->raw('something', ['that']);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
