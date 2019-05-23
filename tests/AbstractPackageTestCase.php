@@ -9,7 +9,7 @@ use GrahamCampbell\TestBench\AbstractPackageTestCase as GrahamAbstractPackageTes
 
 abstract class AbstractPackageTestCase extends GrahamAbstractPackageTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
