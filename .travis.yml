@@ -5,6 +5,12 @@ sudo: false
 php:
   - 7.1
   - 7.2
+  - 7.3
+
+matrix:
+  exclude:
+    - php: 7.1
+      env: LARAVEL_VERSION=6.*
 
 env:
   matrix:
