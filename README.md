@@ -15,6 +15,8 @@ Add a per-request caching layer to Laravel's Gate.
 | **1.x**            | 7.0+    |
 | **2.x**            | 7.1+    |
 
+**NB:** Laravel 5.5.* and PHP 7.4 cannot be tested due to deprecations.
+
 ## Installing
 
 Require the project using [Composer](https://getcomposer.org):
