@@ -1,0 +1,12 @@
+version: '2.4'
+services:
+  app:
+    container_name: laravel-gate-cache
+    image: php:7.4
+    volumes:
+      - .:/code
+    tmpfs:
+      - /opt/home:uid=${UID},gid=${GID}
+    environment:
+      HOME: '/opt/home'
+    working_dir: /code

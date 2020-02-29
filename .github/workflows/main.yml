@@ -53,9 +53,7 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: |
-          composer require "laravel/framework:${{ matrix.laravel-version }}" --no-update -n
-          composer install --no-suggest --prefer-dist -n -o
+        run: composer install --no-suggest --prefer-dist -n -o
 
       - name: Run tests
         run: vendor/bin/phpcs
