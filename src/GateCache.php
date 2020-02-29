@@ -14,8 +14,14 @@ class GateCache extends Gate implements GateContract
     /** @var array */
     private $userInstances = [];
 
-    public function __construct(Container $container, callable $userResolver, array $abilities = [], array $policies = [], array $beforeCallbacks = [], array $afterCallbacks = [])
-    {
+    public function __construct(
+        Container $container,
+        callable $userResolver,
+        array $abilities = [],
+        array $policies = [],
+        array $beforeCallbacks = [],
+        array $afterCallbacks = []
+    ) {
         parent::__construct($container, $userResolver, $abilities, $policies, $beforeCallbacks, $afterCallbacks);
 
         $this->rawResults = collect();

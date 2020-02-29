@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '**'
+  pull_request:
+    brances:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['7.1', '7.2', '7.3', '7.4']
+        laravel-version: ['5.5.*', '5.6.*', '5.7.*', '5.8.*', '6.*']
+        exclude:
+          - php-version: '7.1'
+            laravel-version: '6.*'
+          - php-version: '7.4'
+            laravel-version: '5.5.*'
+
+    name: PHP ${{ matrix.php-version }} Laravel ${{ matrix.laravel-version }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel-version }}" --no-update -n
+          composer install --no-suggest --prefer-dist -n -o
+
+      - name: Run tests
+        run: vendor/bin/phpunit
+
+  code-style:
+    runs-on: ubuntu-latest
+
+    name: Code Style Check
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-suggest --prefer-dist -n -o
+
+      - name: Run tests
+        run: vendor/bin/phpcs
