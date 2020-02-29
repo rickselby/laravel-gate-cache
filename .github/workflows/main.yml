@@ -14,13 +14,22 @@ jobs:
           - php-version: '7.1'
             laravel-version: '6.*'
 
-    container: php:${{ matrix.php-version }}
     name: PHP ${{ matrix.php-version }} Laravel ${{ matrix.laravel-version }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: composer self-update --stable -n
-      - run: composer require "laravel/framework:${{ matrix.laravel-version }}" --no-update -n
-      - run: composer install --no-suggest --prefer-dist -n -o
-      - run: vendor/bin/phpunit
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel-version }}" --no-update -n
+          composer install --no-suggest --prefer-dist -n -o
+
+      - name: Run tests
+        run: vendor/bin/phpunit
