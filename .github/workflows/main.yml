@@ -7,7 +7,7 @@ on:
     tags:
       - '**'
   pull_request:
-    brances:
+    branches:
       - master
 
 jobs:
@@ -18,12 +18,16 @@ jobs:
       fail-fast: false
       matrix:
         php-version: ['7.1', '7.2', '7.3', '7.4']
-        laravel-version: ['5.5.*', '5.6.*', '5.7.*', '5.8.*', '6.*']
+        laravel-version: ['5.5.*', '5.6.*', '5.7.*', '5.8.*', '6.*', '7.*']
         exclude:
           - php-version: '7.1'
             laravel-version: '6.*'
+          - php-version: '7.1'
+            laravel-version: '7.*'
           - php-version: '7.4'
             laravel-version: '5.5.*'
+
+
 
     name: PHP ${{ matrix.php-version }} Laravel ${{ matrix.laravel-version }}
 
