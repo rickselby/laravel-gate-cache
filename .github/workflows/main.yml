@@ -28,7 +28,12 @@ jobs:
             laravel-version: '5.5.*'
           - php-version: '8.0'
             laravel-version: '5.5.*'
-
+          - php-version: '8.0'
+            laravel-version: '5.6.*'
+          - php-version: '8.0'
+            laravel-version: '5.7.*'
+          - php-version: '8.0'
+            laravel-version: '5.8.*'
     name: PHP ${{ matrix.php-version }} Laravel ${{ matrix.laravel-version }}
 
     steps:
