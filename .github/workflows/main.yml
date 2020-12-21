@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.1', '7.2', '7.3', '7.4']
+        php-version: ['7.1', '7.2', '7.3', '7.4', '8.0']
         laravel-version: ['5.5.*', '5.6.*', '5.7.*', '5.8.*', '6.*', '7.*']
         exclude:
           - php-version: '7.1'
@@ -26,9 +26,14 @@ jobs:
             laravel-version: '7.*'
           - php-version: '7.4'
             laravel-version: '5.5.*'
-
-
-
+          - php-version: '8.0'
+            laravel-version: '5.5.*'
+          - php-version: '8.0'
+            laravel-version: '5.6.*'
+          - php-version: '8.0'
+            laravel-version: '5.7.*'
+          - php-version: '8.0'
+            laravel-version: '5.8.*'
     name: PHP ${{ matrix.php-version }} Laravel ${{ matrix.laravel-version }}
 
     steps:
@@ -61,7 +66,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.0'
           coverage: none
 
       - name: Install dependencies
