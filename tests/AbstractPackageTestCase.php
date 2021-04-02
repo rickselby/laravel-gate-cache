@@ -16,7 +16,7 @@ abstract class AbstractPackageTestCase extends GrahamAbstractPackageTestCase
         Request::setLaravelSession(app(Session::class));
     }
 
-    protected function getServiceProviderClass($app)
+    protected function getServiceProviderClass()
     {
         return GateCacheProvider::class;
     }
