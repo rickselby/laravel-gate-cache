@@ -28,6 +28,11 @@
             "RickSelby\\Tests\\": "tests/"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": false
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
