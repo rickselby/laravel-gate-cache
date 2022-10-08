@@ -2,8 +2,8 @@
 
 namespace RickSelby\Tests;
 
-use RickSelby\Laravel\GateCache\GateCache;
 use PHPUnit\Framework\MockObject\MockObject;
+use RickSelby\Laravel\GateCache\GateCache;
 
 class RawTest extends AbstractPackageTestCase
 {
