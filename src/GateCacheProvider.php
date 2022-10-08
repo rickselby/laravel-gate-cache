@@ -2,8 +2,8 @@
 
 namespace RickSelby\Laravel\GateCache;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
+use Illuminate\Support\ServiceProvider;
 
 class GateCacheProvider extends ServiceProvider
 {

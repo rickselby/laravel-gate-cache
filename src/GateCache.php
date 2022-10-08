@@ -3,8 +3,8 @@
 namespace RickSelby\Laravel\GateCache;
 
 use Illuminate\Auth\Access\Gate;
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
+use Illuminate\Contracts\Container\Container;
 
 class GateCache extends Gate implements GateContract
 {
@@ -48,8 +48,7 @@ class GateCache extends Gate implements GateContract
     /**
      * Cache each instance of Gate per user...
      *
-     * @param \Illuminate\Contracts\Auth\Authenticatable|mixed $user
-     *
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|mixed  $user
      * @return Gate|GateContract|mixed
      */
     public function forUser($user)
@@ -66,7 +65,6 @@ class GateCache extends Gate implements GateContract
      *
      * @param $ability
      * @param $arguments
-     *
      * @return string
      */
     protected function getHash($ability, $arguments)
