@@ -1,62 +1,60 @@
-name: CI
+name: Run Tests
 
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
-    branches:
-      - master
 
 jobs:
-  test:
+  phpunit:
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.1', '7.2', '7.3', '7.4', '8.0', '8.1']
-        laravel-version: ['5.5.*', '5.6.*', '5.7.*', '5.8.*', '6.*', '7.*', '8.*', '9.*']
+        php: [7.1, 7.2, 7.3, 7.4, 8.0, 8.1]
+        laravel: [5.5.*, 5.6.*, 5.7.*, 5.8.*, 6.*, 7.*, 8.*, 9.*]
         exclude:
-          - php-version: '7.1'
-            laravel-version: '6.*'
-          - php-version: '7.1'
-            laravel-version: '7.*'
-          - php-version: '7.1'
-            laravel-version: '8.*'
-          - php-version: '7.1'
-            laravel-version: '9.*'
-          - php-version: '7.2'
-            laravel-version: '8.*'
-          - php-version: '7.2'
-            laravel-version: '9.*'
-          - php-version: '7.3'
-            laravel-version: '9.*'
-          - php-version: '7.4'
-            laravel-version: '5.5.*'
-          - php-version: '7.4'
-            laravel-version: '9.*'
-          - php-version: '8.0'
-            laravel-version: '5.5.*'
-          - php-version: '8.0'
-            laravel-version: '5.6.*'
-          - php-version: '8.0'
-            laravel-version: '5.7.*'
-          - php-version: '8.0'
-            laravel-version: '5.8.*'
-          - php-version: '8.1'
-            laravel-version: '5.5.*'
-          - php-version: '8.1'
-            laravel-version: '5.6.*'
-          - php-version: '8.1'
-            laravel-version: '5.7.*'
-          - php-version: '8.1'
-            laravel-version: '5.8.*'
-          - php-version: '8.1'
-            laravel-version: '6.*'
-          - php-version: '8.1'
-            laravel-version: '7.*'
-    name: PHP ${{ matrix.php-version }} Laravel ${{ matrix.laravel-version }}
+          - php: 7.1
+            laravel: 6.*
+          - php: 7.1
+            laravel: 7.*
+          - php: 7.1
+            laravel: 8.*
+          - php: 7.1
+            laravel: 9.*
+          - php: 7.2
+            laravel: 8.*
+          - php: 7.2
+            laravel: 9.*
+          - php: 7.3
+            laravel: 9.*
+          - php: 7.4
+            laravel: 5.5.*
+          - php: 7.4
+            laravel: 9.*
+          - php: 8.0
+            laravel: 5.5.*
+          - php: 8.0
+            laravel: 5.6.*
+          - php: 8.0
+            laravel: 5.7.*
+          - php: 8.0
+            laravel: 5.8.*
+          - php: 8.1
+            laravel: 5.5.*
+          - php: 8.1
+            laravel: 5.6.*
+          - php: 8.1
+            laravel: 5.7.*
+          - php: 8.1
+            laravel: 5.8.*
+          - php: 8.1
+            laravel: 6.*
+          - php: 8.1
+            laravel: 7.*
+    name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }}
 
     steps:
       - name: Checkout
@@ -65,34 +63,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-version }}
+          php: ${{ matrix.php }}
           coverage: none
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel-version }}" --no-update -n
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-update -n
           composer install --no-suggest --prefer-dist -n -o
 
       - name: Run tests
         run: vendor/bin/phpunit
-
-  code-style:
-    runs-on: ubuntu-latest
-
-    name: Code Style Check
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.0'
-          coverage: none
-
-      - name: Install dependencies
-        run: composer install --no-suggest --prefer-dist -n -o
-
-      - name: Run tests
-        run: vendor/bin/phpcs
