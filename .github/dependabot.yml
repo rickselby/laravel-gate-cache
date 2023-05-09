@@ -4,9 +4,16 @@ updates:
     directory: /
     schedule:
       interval: weekly
+      day: saturday
+      time: "08:00"
+      timezone: "Europe/London"
     allow:
       - dependency-type: direct
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+      day: saturday
+      time: "08:00"
+      timezone: "Europe/London"
