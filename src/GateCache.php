@@ -63,8 +63,8 @@ class GateCache extends Gate implements GateContract
     /**
      * Generate a unique hash for the request.
      *
-     * @param $ability
-     * @param $arguments
+     * @param  $ability
+     * @param  $arguments
      * @return string
      */
     protected function getHash($ability, $arguments)
