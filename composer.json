@@ -10,11 +10,11 @@
         }
     ],
     "require": {
-        "illuminate/auth": "10.*|11.*",
-        "illuminate/contracts": "10.*|11.*"
+        "illuminate/auth": "11.*",
+        "illuminate/contracts": "11.*"
     },
     "require-dev": {
-        "graham-campbell/testbench": "^6.0",
+        "graham-campbell/testbench": "^6.1",
         "phpunit/phpunit": "^10.0"
     },
     "autoload": {
