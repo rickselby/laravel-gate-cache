@@ -54,7 +54,7 @@ class RawTest extends AbstractPackageTestCase
         parent::setUp();
 
         $this->gateCache = $this->getMockBuilder(GateCache::class)
-            ->setMethods(['callAuthCallback'])
+            ->onlyMethods(['callAuthCallback'])
             ->setConstructorArgs([
                 $this->app,
                 // User Resolver must return true for 5.6
