@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-        "illuminate/auth": "11.*",
-        "illuminate/contracts": "11.*"
+        "illuminate/auth": "10.*|11.*",
+        "illuminate/contracts": "10.*|11.*"
     },
     "require-dev": {
         "graham-campbell/testbench": "^6.1",
