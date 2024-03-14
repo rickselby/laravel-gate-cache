@@ -8,7 +8,7 @@ Add a per-request caching layer to Laravel's Gate.
 
 | Laravel Auto Presenter Mapper | Laravel  |
 |-------------------------------|----------|
-| **3.x**                       | 5.5-10.x |
+| **3.x**                       | 5.5-11.x |
 | 2.x                           | 5.5-5.8  |
 | 1.x                           | 5.5-5.7  |
 
