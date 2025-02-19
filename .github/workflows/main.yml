@@ -15,13 +15,14 @@ jobs:
       matrix:
         php: [8.1, 8.2, 8.3]
         laravel: ['10.*', '11.*', '12.*']
+        dependency-version: [prefer-lowest, prefer-stable]
         exclude:
-          - php: 8.1
-            laravel: 11.*
+          - laravel: 11.*
+            php: 8.1            
           - laravel: 12.*
             php: 8.1
 
-    name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }}
+    name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
     steps:
       - name: Checkout
@@ -36,7 +37,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" --no-update -n
-          composer install --no-suggest --prefer-dist -n -o
+          composer install --${{ matrix.dependency-version }} --no-suggest --prefer-dist -n -o
 
       - name: Run tests
         run: vendor/bin/phpunit
